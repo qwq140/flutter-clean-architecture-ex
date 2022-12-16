@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:image_search/api/api.dart';
+import 'package:image_search/data/api.dart';
 import 'package:image_search/model/photo.dart';
 import 'package:image_search/ui/widget/photo_widget.dart';
 import 'package:http/http.dart' as http;

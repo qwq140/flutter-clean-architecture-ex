@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_search/api/api.dart';
+import 'package:image_search/data/api.dart';
 import 'package:image_search/ui/home_screen.dart';
 
 void main() {
