@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 // 결합도를 느슨하게하는 방법
 // 외부에서 인스턴스를 생성해서 생성자로 받아오는 방법
 class HomeScreen extends StatefulWidget {
-
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -30,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<HomeViewModel>();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -53,38 +51,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 suffixIcon: IconButton(
                   onPressed: () async {
-                    viewModel.fetch(_controller.text);
+                    context.read<HomeViewModel>().fetch(_controller.text);
                   },
                   icon: const Icon(Icons.search),
                 ),
               ),
             ),
           ),
-          StreamBuilder<List<Photo>>(
-            stream: viewModel.photoStream,
-            builder: (context, snapshot) {
-              if(!snapshot.hasData) {
-                return const CircularProgressIndicator();
-              }
-
-              final photos = snapshot.data!;
-
+          Consumer<HomeViewModel>(
+            builder: (_, viewModel, child) {
               return Expanded(
                 child: GridView.builder(
                   padding: const EdgeInsets.all(16),
-                  itemCount: photos.length,
+                  itemCount: viewModel.photos.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                   ),
                   itemBuilder: (context, index) {
-                    final photo = photos[index];
+                    final photo = viewModel.photos[index];
                     return PhotoWidget(photo: photo);
                   },
                 ),
               );
-            }
+            },
           ),
         ],
       ),
