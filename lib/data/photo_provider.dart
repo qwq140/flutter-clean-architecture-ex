@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:image_search/data/api.dart';
+import 'package:image_search/data/pixabay_api.dart';
 import 'package:image_search/model/photo.dart';
 import 'package:image_search/ui/home_view_model.dart';
 
