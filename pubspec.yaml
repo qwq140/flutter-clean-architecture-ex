@@ -41,6 +41,7 @@ dependencies:
   equatable: ^2.0.5
   freezed_annotation: ^2.2.0
   provider: ^6.0.5
+  nested: ^1.0.0
 
 dev_dependencies:
   flutter_test:
